@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.venv1/
+
+# Packaging output
+build/
+dist/
+
+# IDE and macOS
+.idea/
+.DS_Store
+
+# Personal and machine-specific data
+faces*/
+eye_calibration.json
+spotify_coords.json
+distil_notes.txt
+study.txt
+
+# Generated captures
+*.log
+*screenshot*.png
+eye calibrate.png
