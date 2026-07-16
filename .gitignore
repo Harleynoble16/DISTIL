@@ -13,11 +13,7 @@ dist/
 .DS_Store
 
 # Personal and machine-specific data
-faces*/
-eye_calibration.json
-spotify_coords.json
-distil_notes.txt
-study.txt
+user_data/
 
 # Generated captures
 *.log

@@ -6,8 +6,8 @@ a = Analysis(
     pathex=[],
     binaries=[],
 datas=[
-    ("sounds/jarvis_online.mp3", "sounds"),
-    ("haarcascade_frontalface_default.xml", "."),
+    ("assets/sounds/jarvis_online.mp3", "assets/sounds"),
+    ("assets/vision/haarcascade_frontalface_default.xml", "assets/vision"),
 ],
     hiddenimports=[],
     hookspath=[],
@@ -48,7 +48,7 @@ coll = COLLECT(
 app = BUNDLE(
     coll,
     name='DISTIL.app',
-    icon='distil.icns',
+    icon='assets/icons/distil.icns',
     bundle_identifier='com.harley.distil',
     info_plist={
         "NSCameraUsageDescription": "DISTIL uses the camera for eye tracking."

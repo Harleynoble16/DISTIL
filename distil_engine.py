@@ -8,6 +8,8 @@ from datetime import datetime
 import psutil
 import shutil
 import threading
+import sys
+from pathlib import Path
 
 gui_logger = None
 
@@ -22,17 +24,22 @@ def log(text):
 
         print(text)
 
-DISTIL_FOLDER = "/Users/harleynoble16/Year2Python/DISTIL"
-
-SOUNDS_FOLDER = os.path.join(
-    DISTIL_FOLDER,
-    "sounds"
+PROJECT_FOLDER = Path(__file__).resolve().parent
+RESOURCE_FOLDER = (
+    Path(sys._MEIPASS)
+    if getattr(sys, "frozen", False)
+    else PROJECT_FOLDER
 )
+USER_DATA_FOLDER = PROJECT_FOLDER / "user_data"
+NOTES_FOLDER = USER_DATA_FOLDER / "notes"
+CAPTURES_FOLDER = USER_DATA_FOLDER / "captures"
 
-EYE_FILE = os.path.join(
-    DISTIL_FOLDER,
-    "eye_calibration.json"
-)
+for folder in (USER_DATA_FOLDER, NOTES_FOLDER, CAPTURES_FOLDER):
+    folder.mkdir(parents=True, exist_ok=True)
+
+DISTIL_FOLDER = str(PROJECT_FOLDER)
+SOUNDS_FOLDER = str(RESOURCE_FOLDER / "assets" / "sounds")
+EYE_FILE = str(USER_DATA_FOLDER / "eye_calibration.json")
 
 WEBSITES = {
     "youtube": "https://youtube.com",
@@ -820,10 +827,7 @@ def take_screenshot():
 
     file_name = f"{name}.png"
 
-    path = os.path.join(
-        DISTIL_FOLDER,
-        file_name
-    )
+    path = CAPTURES_FOLDER / file_name
 
     screenshot = pyautogui.screenshot()
 
@@ -947,10 +951,7 @@ def add_note():
         "Write note: "
     )
 
-    path = os.path.join(
-        DISTIL_FOLDER,
-        f"{file_name}.txt"
-    )
+    path = NOTES_FOLDER / f"{file_name}.txt"
 
     with open(
         path,
@@ -1193,20 +1194,10 @@ def handle_natural_command(command):
         add_note()
         return True
 
-from pathlib import Path
-import os
-import sys
-
-if getattr(sys, "frozen", False):
-
-    base_path = Path(sys._MEIPASS)
-
-else:
-
-    base_path = Path(__file__).parent
-
 cascade_path = (
-    base_path /
+    RESOURCE_FOLDER /
+    "assets" /
+    "vision" /
     "haarcascade_frontalface_default.xml"
 )
 
