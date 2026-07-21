@@ -15,3 +15,17 @@ Keyboard-first personal assistant for macOS with accessibility-focused eye and g
 - `build` and `dist`: generated packaging output. These folders are excluded from Git.
 
 Personal data should remain local and must not be committed to source control.
+
+## Setup
+
+DISTIL currently targets macOS and Python 3.12 or later.
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements.txt
+python3 Main.py
+```
+
+macOS may ask for Accessibility, Camera and Screen Recording permissions when
+the related controls are first used.

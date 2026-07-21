@@ -1,0 +1,5 @@
+opencv-python
+psutil
+PyAutoGUI
+PySide6
+requests
